@@ -8,7 +8,7 @@
   [mass]
   (int (- (Math/floor (/ mass 3)) 2)))
 
-(defn fuel-seq
+(defn- fuel-seq
   "Generates a lazy seq of the needed recursive fuel"
   [mass]
   (let [needed-fuel (compute-fuel mass)]
