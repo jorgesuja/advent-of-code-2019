@@ -1,6 +1,6 @@
-# advent-1
+# advent-2
 
-Resolution of the first kata of Advent of code 2019: 
+Resolution of the second kata of Advent of code 2019: 
 https://adventofcode.com/2019/day/1
 
 ## The problem
