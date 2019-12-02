@@ -1,4 +1,4 @@
-(ns advent-1.core
+(ns advent-2.core
   (:require [clojure.string :as str]
             [clojure.java.io :as io])
   (:gen-class))
