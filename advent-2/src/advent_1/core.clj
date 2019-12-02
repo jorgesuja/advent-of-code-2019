@@ -4,9 +4,22 @@
   (:gen-class))
 
 (defn- compute-fuel
-  "Computes the fuel needed to launch a module"
+  "Computes the fuel needed to launch a certain mass"
   [mass]
   (int (- (Math/floor (/ mass 3)) 2)))
+
+(defn fuel-seq
+  "Generates a lazy seq of the needed recursive fuel"
+  [mass]
+  (let [needed-fuel (compute-fuel mass)]
+    (lazy-seq (cons needed-fuel (fuel-seq needed-fuel)))))
+
+(defn- compute-full-fuel
+  "Computes the fuel needed to launch a module"
+  [mass]
+  (->> (fuel-seq mass)
+       (take-while #(pos? %))
+       (reduce +)))
 
 (defn- parse-file
   "Reads the input file into a vector"
@@ -19,7 +32,7 @@
   "Processes all the read values"
   [values]
   (->> values
-       (map #(compute-fuel (Integer/parseInt %)))
+       (map #(compute-full-fuel (Integer/parseInt %)))
        (reduce +)))
 
 (defn- write-results
